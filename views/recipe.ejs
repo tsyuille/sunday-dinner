@@ -1,0 +1,60 @@
+<%- include('partials/main-header') -%>
+
+<% if(recipe != null) { %>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/home">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page"><%- recipe.name %></li>
+        </ol>
+    </nav>
+
+    <section class="row">
+        <section class="col-12 col-md-4">
+            <img src="/uploads/<%- recipe.image %>" class="img-fluid sticky-top" style="top: 20px" 
+            alt="<%- recipe.name %>" loading="lazy">
+        </section>
+        <section class="col-12 col-md-8">
+            <section class="row">
+                <section class="col-12"><h1><%- recipe.name %></h1></section>
+                <section class="col-12 mb-4">
+                    <i class="bi bi-tag"></i>
+                    <%- recipe.category %>
+                </section>
+
+                <!--<form
+                class="col justify-content-end"
+                action="/recipe/favoriteRecipe/<%= recipe.id %>?_method=PUT"
+                method="POST">
+                    <button class="<%if(recipe.favorites.includes(user.id)){ %> bi bi-bookmark-fill<%} else { %> bi bi-bookmark <% }%> btn btn-primary" type="submit"></button>
+                </form>-->
+
+            </section>
+            <section class="row pt-4">
+                <section class="col-12">
+                    <h4>Ingredients</h4>
+                    <ul class="list-group list-group-flush">
+                        <% recipe.ingredients.forEach(function(ingredients, index) { %>
+                            <li class="list-group-item"><%= ingredients %></li>
+                       <% }) %>
+                    </ul>
+                </section>
+            </section>
+            <section class="col-12" style="white-space: pre-line">
+                <h4>Instructions</h4>
+                <ol class="list-group list-group-flush">
+                    <% recipe.instructions.forEach(function(instructions, index) { %>
+                        <li class="list-group-item"><%= instructions %></li>
+                   <% }) %>
+                </ol>
+            </section>
+        </section>
+    </section>
+
+<% } else { %>
+    <p>No item found.</p>
+<% } %>    
+
+<%- include('partials/footer') -%>

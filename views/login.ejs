@@ -1,0 +1,32 @@
+<%- include('partials/header') -%>
+
+<main class="container card-container">
+    <section class="row justify-content-center">
+      <section class="col-6 mt-5">
+        <h1>Sign in with email</h1>
+        <form action="/login" method="POST">
+          <section class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              name="email"
+            >
+          </section>
+          <section class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              name="password">
+          </section>
+          <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <%- include('partials/footer') -%>

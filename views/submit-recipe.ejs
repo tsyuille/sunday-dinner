@@ -1,0 +1,99 @@
+<%- include('partials/main-header') -%>
+
+<!--Submit Recipe -->
+
+<section class="text-center">
+    <h1 class="pb-4 display-5">Submit Your Recipe</h1>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <span>Submit Recipe</span>
+            </li>
+        </ol>
+    </nav>
+
+    <section class="col-lg-6 mx-auto">
+      <p class="lead">
+        Do you have a recipe that your family/friends can't get enough of? That thing that
+          you're always asked to bring to the function? Share it here!
+      </p>
+    </section>
+</section>
+
+<section class="row justify-content-center">
+
+    <% if(infoSubmitObj != '') { %>
+      <section class="col-8 alert alert-success" role="alert">
+        <%= infoSubmitObj %>
+      </section>
+    <% } %>
+  
+    <% if(infoErrorsObj != '') { %>
+      <section class="col-8 alert alert-danger" role="alert">
+        <%= infoErrorsObj[0].message %>
+      </section>
+    <% } %>
+  
+    <section class="col-8">
+  
+      <form action="/submit-recipe" enctype="multipart/form-data" method="POST">
+      
+        <section class="row g-3">
+  
+          <section class="col-12">
+            <label for="name" class="form-label">Recipe Name</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+          </section>
+
+          <section class="col-12">
+            <label for="category">Select Category</label>
+            <select class="form-select form-control" name="category" aria-label="Category">
+              <option selected>Select Category</option>
+              <option value="Cookout">Cookout</option>
+              <option value="Baby Shower">Baby Shower</option>
+              <option value="Quick & Easy">Quick & Easy</option>
+              <option value="Shindig">Shindig</option>
+              <option value="Sundee Dinner">Sundee Dinner</option>
+            </select>
+          </section>
+          
+          <section class="col-12">
+            <label for="name" class="form-label">Ingredients</label><br>
+            <section class="ingredientList">
+              <section class="ingredientDiv mb-1">
+                <input type="text" name="ingredients" class="form-control" required>
+              </section>
+            </section>
+          </section>
+
+          <section class="col-12">
+            <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Ingredient</button>
+          </section>
+
+          <section class="col-12">
+            <label for="instructions" class="form-label">Instructions</label>
+            <textarea name="instructions" id="instructions" class="form-control" cols="30" rows="4" required></textarea>
+          </section>
+  
+          <section class="col-12">
+            <label for="image">Image</label>
+            <input type="file" class="form-control" name="image" accept="image/*">
+          </section>
+  
+          <section class="col-12">
+            <button type="submit" class="btn btn-primary">Submit Recipe</button>
+          </section>
+  
+        </section>
+      
+      </form>
+  
+    </section>
+  
+</section>
+  
+<%- include('partials/footer') -%>

@@ -1,0 +1,44 @@
+<%- include('partials/main-header') -%>
+
+<section class="text-center">
+    <h1 class="pb-4">My Recipes</h1>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <span>My Recipes</span>
+            </li>
+        </ol>
+    </nav>
+</section>
+
+<section class="row row-cols-1 row-cols-md-3 g-4">
+    <% for(let i = 0; i <recipe.length; i++) {%>
+    <section class="col">
+      <section class="card h-100">
+        <img src="<%= recipe[i].image%>" class="card-img-top" alt="...">
+        <section class="card-body">
+          <h5 class="card-title"><%= recipes[i].name%></h5>
+          <a href="/recipe/<%= recipe[i]._id%>" class="btn btn-primary">View Recipe</a>
+          <!-- <a href="/recipe/<%= recipe[i]._id%>" class="btn btn-primary">Edit</a> -->
+          <%if(posts.user == user.id){ %>
+          <form
+            action="/recipe/deletePost/<%= recipe.id %>?_method=DELETE"
+            method="POST"
+            class="col-3">
+            <button class="btn btn-primary fa fa-trash" type="submit"></button>
+          </form>
+          <%}%>
+        </section>
+        <section class="card-footer">
+          <span class="badge rounded-pill bg-primary"><%= recipe[i].category%></span>
+        </section>
+      </section>
+    </section>
+    <% } %>
+  </section>
+
+  <%- include('partials/footer') -%>

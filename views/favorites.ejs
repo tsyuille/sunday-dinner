@@ -1,0 +1,29 @@
+<%- include('partials/main-header') -%>
+
+<section class="container card-container">
+  <h1>My Favorite Recipes</h1>
+  <% console.log(recipe[0]) %> 
+  <section class="row row-cols-1 row-cols-md-3 g-4">
+    <% for(let i=0; i<recipe.length; i++) {%>
+      <%if(recipe[i].favorite.includes(user.id)) {%>
+    <section class="col">
+      <section class="card h-100">
+        <img src="<%= recipe[i].image%>" class="card-img-top" alt="...">
+        <section class="card-body">
+          <h5 class="card-title"><%= recipe[i].name%></h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <a href="/recipe/<%= recipe[i]._id%>" class="btn btn-primary">View Recipe</a>
+          <!-- <a href="/post/<%= posts[i]._id%>" class="btn btn-primary">Edit</a> -->
+        </section>
+        <section class="card-footer">
+          <span class="badge rounded-pill bg-primary"><%= recipe[i].category%></span>
+        </section>
+      </section>
+    </section>
+    <% } %>
+    <% } %>
+  </section>
+  
+</section>
+
+<%- include('partials/footer') -%>
