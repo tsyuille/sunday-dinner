@@ -2,15 +2,6 @@
 
 <% if(recipe != null) { %>
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="/home">Home</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page"><%- recipe.name %></li>
-        </ol>
-    </nav>
-
     <section class="row">
         <section class="col-12 col-md-4">
             <img src="/uploads/<%- recipe.image %>" class="img-fluid sticky-top" style="top: 20px" 
