@@ -4,7 +4,7 @@ const Recipe = require('../models/Recipe')
 const user = require('../models/User')
 
 
-// GET /home
+// GET /
 
 exports.home = async(req, res) => {
     try{
@@ -15,7 +15,7 @@ exports.home = async(req, res) => {
     }
 }
 
-// GET /
+// GET /home
 
 exports.homepage = async(req, res) => {
     try{
@@ -263,108 +263,3 @@ exports.submitRecipeOnPost = async(req, res) => {
           res.redirect('/submit-recipe');
         }
       }
-
-
-/*async function insertCategory() {
-    try {
-        await Category.insertMany([
-            {
-                "name": "Cookout",
-                "image": "cookout"
-            },
-            {
-                "name": "Baby Shower",
-                "image": "baby-shower"
-           },
-           {
-                "name": "Quick & Easy",
-                "image": "quick-easy"
-           },   
-           {
-                "name": "Shindig",
-                "image": "shindig"
-           },
-           {
-                "name": "Sundee Dinner",
-                "image": "sundee-dinner"
-           }
-        ])
-    } catch (error) {
-        console.log('err', + error)
-    }
-}
-insertCategory()*/
-
-/*async function insertRecipe() {
-    try {
-        await Recipe.insertMany([
-            {
-                "name": "Burger",
-                "image": "Burger",
-                "ingredients": [
-                    "1 pound of ground beef", 
-                    "Salt", 
-                    "Pepper", 
-                    "Garlic powder", 
-                    "Onion powder"
-                ],
-                "instructions": [
-                    "Add all seasonings to ground beef", 
-                    "Throw burgers on the grill until they reach desired doneness"
-                ], 
-                "category": "Cookout"
-            },
-            {
-                "name": "Burger",
-                "image": "Burger",
-                "ingredients": [
-                    "1 pound of ground beef", 
-                    "Salt", 
-                    "Pepper", 
-                    "Garlic powder", 
-                    "Onion powder"
-                ],
-                "instructions": [
-                    "Add all seasonings to ground beef", 
-                    "Throw burgers on the grill until they reach desired doneness"
-                ], 
-                "category": "Quick & Easy"
-            },
-            {
-                "name": "Burger",
-                "image": "Burger",
-                "ingredients": [
-                    "1 pound of ground beef", 
-                    "Salt", 
-                    "Pepper", 
-                    "Garlic powder", 
-                    "Onion powder"
-                ],
-                "instructions": [
-                    "Add all seasonings to ground beef", 
-                    "Throw burgers on the grill until they reach desired doneness"
-                ], 
-                "category": "Shindig"
-            },
-            {
-                "name": "Burger",
-                "image": "Burger",
-                "ingredients": [
-                    "1 pound of ground beef", 
-                    "Salt", 
-                    "Pepper", 
-                    "Garlic powder", 
-                    "Onion powder"
-                ],
-                "instructions": [
-                    "Add all seasonings to ground beef", 
-                    "Throw burgers on the grill until they reach desired doneness"
-                ], 
-                "category": "Baby Shower"
-            }
-        ])
-    } catch (error) {
-        console.log('err', + error)
-    }
-}
-insertRecipe()*/
