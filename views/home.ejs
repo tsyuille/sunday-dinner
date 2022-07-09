@@ -14,7 +14,6 @@
                 <a href="/recipe/<%= recipe._id %>" class="btn btn-outline-dark">View Recipe</a>
                 </section>
                 <section class="card-footer">
-                <!--<a href="/categories/<%- category.name %>" class="btn btn-outline-primary"><%= recipe.category%></a>-->
                 <span class="badge rounded-pill text-light bg-dark"><%= recipe.category%></span>
                 </section>
             </section>
@@ -36,32 +35,7 @@
 
 <!--<section class="row flex-lg-row-reverse align-items-center g-5 py-4 mb-4">
 
- <--Latest -->
-
-<!--<section class="pb-4 pt-4">
-    <section class="d-flex mb-2 align-items-center">
-      <h2>Latest Recipes</h2>
-      <a href="/categories" class="ms-auto">View More</a>
-    </section>
-
-    <section class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        <% if(recipe !== '') { %>
-          <% recipe.forEach(function(recipe, index){ %>
-          <a href="/recipe/<%= recipe._id %>" class="col text-center category__link">
-            <section class="latest_img latest_img--large shadow">
-              <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
-            </section>
-            <section class="pt-1"><%= recipe.name %></section>
-          </a>
-          <% }) %>
-        <% } else { %>
-          <p>No items found.</p>
-        <% } %> 
-    </section>
-    
-</section> -->
-
-<!--Categories - SHOW ONLY
+ Categories - SHOW ONLY
 <section class="pb-4 pt-4">
     <section class="d-flex mb-2 align-items-center">
         <h2>Categories</h2>
