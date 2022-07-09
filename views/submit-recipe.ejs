@@ -5,17 +5,6 @@
 <section class="text-center">
     <h1 class="pb-4 display-5">Submit Your Recipe</h1>
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="/">Home</a>
-            </li>
-            <li class="breadcrumb-item active">
-                <span>Submit Recipe</span>
-            </li>
-        </ol>
-    </nav>
-
     <section class="col-lg-6 mx-auto">
       <p class="lead">
         Do you have a recipe that your family/friends can't get enough of? That thing that
@@ -39,11 +28,8 @@
     <% } %>
   
     <section class="col-8">
-  
       <form action="/submit-recipe" enctype="multipart/form-data" method="POST">
-      
         <section class="row g-3">
-  
           <section class="col-12">
             <label for="name" class="form-label">Recipe Name</label>
             <input type="text" name="name" id="name" class="form-control" required>
@@ -87,13 +73,9 @@
           <section class="col-12">
             <button type="submit" class="btn btn-primary">Submit Recipe</button>
           </section>
-  
         </section>
-      
       </form>
-  
     </section>
-  
 </section>
   
 <%- include('partials/footer') -%>
