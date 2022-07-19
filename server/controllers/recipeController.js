@@ -131,13 +131,14 @@ exports.submitRecipeOnPost = async(req, res) => {
         image: newImageName,
         ingredients: req.body.ingredients,
         instructions: req.body.instructions,
-        category: req.body.category
+        category: req.body.category, 
+        user: req.user.id
       })
       
       await newRecipe.save()
   
       req.flash('infoSubmit', 'Recipe has been added.')
-      res.redirect('/submit-recipe')
+      res.redirect('/my-recipes')
     } catch (error) {
       // res.json(error);
       req.flash('infoErrors', error)
@@ -162,8 +163,8 @@ exports.submitRecipeOnPost = async(req, res) => {
 
     exports.getRecipes = async (req, res) => {
         try {
-          const recipe = await Recipe.find({ user: req.user.id });
-          res.render('my-recipes.ejs', { recipe: recipe, user: req.user })
+          const recipes = await Recipe.find({ user: req.user.id });
+          res.render('my-recipes.ejs', { recipes: recipes, user: req.user })
         } catch (err) {
           console.log(err)
         }
@@ -171,8 +172,8 @@ exports.submitRecipeOnPost = async(req, res) => {
 
     exports.getFavorites = async (req, res) => {
         try {
-          const recipe = await Recipe.find({ user: req.user.id });
-          res.render('favorites.ejs', { recipe: recipe, user: req.user });
+          const recipes = await Recipe.find({ user: req.user.id });
+          res.render('favorites.ejs', { recipes: recipes, user: req.user });
         } catch (err) {
           console.log(err)
         }
@@ -254,7 +255,7 @@ exports.submitRecipeOnPost = async(req, res) => {
     exports.deletePost = async (req, res) => {
         try {
           // Find post by id
-          let recipe = await Recipe.findById({ _id: req.params.id })
+          let recipes = await Recipe.findById({ _id: req.params.id })
           // Delete post from db
           await Recipe.remove({ _id: req.params.id });
           console.log('Deleted Recipe');

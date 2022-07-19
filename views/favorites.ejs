@@ -2,20 +2,19 @@
 
 <section class="container card-container">
   <h1>My Favorite Recipes</h1>
-  <% console.log(recipe[0]) %> 
+  <% console.log(recipes[0]) %> 
   <section class="row row-cols-1 row-cols-md-3 g-4">
-    <% for(let i=0; i<recipe.length; i++) {%>
-      <%if(recipe[i].favorite.includes(user.id)) {%>
+    <% for(let i=0; i<recipes.length; i++) {%>
+      <%if(recipes[i].favorites.includes(user.id)) {%>
     <section class="col">
       <section class="card h-100">
-        <img src="<%= recipe[i].image%>" class="card-img-top" alt="...">
+        <img src="<%= recipes[i].image%>" class="card-img-top" alt="...">
         <section class="card-body">
-          <h5 class="card-title"><%= recipe[i].name%></h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <a href="/recipe/<%= recipe[i]._id%>" class="btn btn-primary">View Recipe</a>
+          <h5 class="card-title"><%= recipes[i].name%></h5>
+          <a href="/recipe/<%= recipes[i]._id%>" class="btn btn-primary">View Recipe</a>
         </section>
         <section class="card-footer">
-          <span class="badge rounded-pill bg-primary"><%= recipe[i].category%></span>
+          <span class="badge rounded-pill bg-primary"><%= recipes[i].category%></span>
         </section>
       </section>
     </section>

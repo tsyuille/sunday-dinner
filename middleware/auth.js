@@ -3,14 +3,14 @@ module.exports = {
       if (req.isAuthenticated()) {
         return next();
       } else {
-        res.redirect('/')
+        res.redirect('/home')
       }
     },
     ensureGuest: function (req, res, next) {
       if (!req.isAuthenticated()) {
         return next()
       } else {
-        res.redirect('/home')
+        res.redirect('/')
       }
     }
   }

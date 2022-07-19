@@ -3,29 +3,25 @@ const mongoose = require('mongoose')
 const recipeSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: 'This field is required'
+        required: true
     }, 
     image: {
         type: String,
-        required: 'This field is required'
+        required: true
     },
     ingredients: {
         type: Array,
-        required: 'This field is required'
+        required: true
     },
     instructions: {
         type: Array,
-        required: 'This field is required'
+        required: true
     }, 
     category: {
         type: String,
         enum: ['Cookout', 'Baby Shower', 'Quick & Easy', 'Shindig', 'Sundee Dinner'],
-        required: 'This field is required'
+        required: true
     },
-    likes: {
-        type: Array,
-        required: true,
-      },
     favorites: {
         type: Array,
         required: true,

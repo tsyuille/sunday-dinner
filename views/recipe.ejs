@@ -15,12 +15,12 @@
                     <%- recipe.category %>
                 </section>
 
-                <!--<form
+                <form
                 class="col justify-content-end"
                 action="/recipe/favoriteRecipe/<%= recipe.id %>?_method=PUT"
                 method="POST">
                     <button class="<%if(recipe.favorites.includes(user.id)){ %> bi bi-bookmark-fill<%} else { %> bi bi-bookmark <% }%> btn btn-primary" type="submit"></button>
-                </form>-->
+                </form>
 
             </section>
             <section class="row pt-4">
