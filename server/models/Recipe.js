@@ -22,13 +22,9 @@ const recipeSchema = new mongoose.Schema({
         enum: ['Cookout', 'Baby Shower', 'Quick & Easy', 'Shindig', 'Sundee Dinner'],
         required: true
     },
-    favorites: {
-        type: Array,
-        required: true,
-      },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User'
       },
     createdAt: {
         type: Date,

@@ -131,17 +131,18 @@ exports.submitRecipeOnPost = async(req, res) => {
         image: newImageName,
         ingredients: req.body.ingredients,
         instructions: req.body.instructions,
-        category: req.body.category, 
-        user: req.user.id
+        category: req.body.category,
+        // user: req.user.id
       })
       
       await newRecipe.save()
-  
+
       req.flash('infoSubmit', 'Recipe has been added.')
-      res.redirect('/my-recipes')
-    } catch (error) {
-      // res.json(error);
-      req.flash('infoErrors', error)
+      res.redirect('/home')
+    } catch (err) {
+      //res.json(error)
+      //req.flash('infoErrors', error)
+      console.log(err)
       res.redirect('/submit-recipe')
     }
   }
