@@ -6,7 +6,7 @@ const user = require('../models/User')
 
 // GET /
 
-exports.home = async(req, res) => {
+exports.index = async(req, res) => {
     try{
         res.render('index', { title: 'Sundee Dinner' })
     }
@@ -17,7 +17,7 @@ exports.home = async(req, res) => {
 
 // GET /home
 
-exports.homepage = async(req, res) => {
+exports.home = async(req, res) => {
     try{
         const limitNumber = 10
         const categories = await Category.find({}).limit(limitNumber)

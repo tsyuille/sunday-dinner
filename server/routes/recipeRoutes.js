@@ -1,17 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const recipeController = require('../controllers/recipeController')
-const authController = require('../controllers/auth')
-const { ensureAuth, ensureGuest } = require('../../middleware/auth')
+const { ensureAuth } = require('../../middleware/auth')
 
 // App Routes
-router.get('/', recipeController.home)
-router.get('/home', recipeController.homepage)
-router.get('/login', authController.getLogin)
-router.post('/login', authController.postLogin)
-router.get('/logout', authController.logout)
-router.get('/signup', authController.getSignup)
-router.post('/signup', authController.postSignup)
+router.get('/', recipeController.index)
+router.get('/home', recipeController.home)
 router.get('/my-recipes', ensureAuth, recipeController.getRecipes)
 router.get('/favorites', ensureAuth, recipeController.getFavorites);
 router.get('/recipe/:id', recipeController.exploreRecipe)
