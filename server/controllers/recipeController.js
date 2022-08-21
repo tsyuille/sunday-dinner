@@ -8,7 +8,7 @@ const user = require('../models/User')
 
 exports.index = async(req, res) => {
     try{
-        res.render('index', { title: 'Sundee Dinner' })
+        res.render('index', { layout: 'index' })
     }
     catch(error) {
         res.status(500).send({message: error.message || "Error Occurred"})
@@ -36,7 +36,7 @@ exports.home = async(req, res) => {
     } catch(error) {
         res.status(500).send({message: error.message || "Error Occurred"})
     }
-}
+} 
 
 // GET /categories
 
