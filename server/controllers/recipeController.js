@@ -76,7 +76,7 @@ exports.exploreRecipe = async(req, res) => {
     try{
         let recipeId = req.params.id
         const recipe = await Recipe.findById(recipeId)
-        res.render('recipe', { title: 'Sundee Dinner - Recipe', recipe, user })
+        res.render('recipe', { title: 'Sundee Dinner - Recipe', recipe })
     } catch(error) {
         res.status(500).send({message: error.message || "Error Occurred"})
     }  
@@ -132,7 +132,7 @@ exports.submitRecipeOnPost = async(req, res) => {
         ingredients: req.body.ingredients,
         instructions: req.body.instructions,
         category: req.body.category,
-        // user: req.user.id
+        user: req.user.id
       })
       
       await newRecipe.save()
@@ -162,14 +162,25 @@ exports.submitRecipeOnPost = async(req, res) => {
 
 // GET user recipes, favorites, likes, delete option ADD UPDATE RECIPE OPTION??
 
-    exports.getRecipes = async (req, res) => {
+   /* exports.getRecipes = async (req, res) => {
         try {
           const recipes = await Recipe.find({ user: req.user.id });
           res.render('my-recipes.ejs', { recipes: recipes, user: req.user })
         } catch (err) {
           console.log(err)
         }
-      }
+      } */
+
+       exports.getUserRecipes = async (req, res) => {
+          try {
+            const recipes = await Recipe.find({ user: req.params.userId })
+            .populate('user')
+            .lean()
+            res.render('userRecipes.ejs', { recipes })
+        } catch(err) {
+            console.error(err)
+        }
+      } 
 
     exports.getFavorites = async (req, res) => {
         try {
