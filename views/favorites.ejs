@@ -1,7 +1,10 @@
 <%- include('partials/main-header') -%>
 
-<section class="container card-container">
+<section class="text-center">
   <h1>My Favorite Recipes</h1>
+</section>
+
+<section class="container card-container">
   <% console.log(recipes[0]) %> 
   <section class="row row-cols-1 row-cols-md-3 g-4">
     <% for(let i=0; i<recipes.length; i++) {%>

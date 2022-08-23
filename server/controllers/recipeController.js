@@ -1,4 +1,5 @@
 require('../models/database')
+const cloudinary = require('../middleware/cloudinary')
 const Category = require('../models/Category')
 const Recipe = require('../models/Recipe')
 const user = require('../models/User')
@@ -106,29 +107,12 @@ exports.submitRecipe = async(req, res) => {
 
 exports.submitRecipeOnPost = async(req, res) => {
     try {
-  
-      let imageUploadFile
-      let uploadPath
-      let newImageName
-  
-      if(!req.files || Object.keys(req.files).length === 0){
-        console.log('No Files where uploaded.')
-      } else {
-  
-        imageUploadFile = req.files.image
-        newImageName = Date.now() + imageUploadFile.name
-  
-        uploadPath = require('path').resolve('./') + '/public/uploads/' + newImageName;
-  
-        imageUploadFile.mv(uploadPath, function(err){
-          if(err) return res.satus(500).send(err)
-        })
-  
-      }
+      const result = await cloudinary.uploader.upload(req.file.path)
   
       const newRecipe = new Recipe({
         name: req.body.name,
-        image: newImageName,
+        image: result.secure_url,
+        cloudinaryId: result.public_id,
         ingredients: req.body.ingredients,
         instructions: req.body.instructions,
         category: req.body.category,
@@ -162,14 +146,16 @@ exports.submitRecipeOnPost = async(req, res) => {
 
 // GET user recipes, favorites, likes, delete option ADD UPDATE RECIPE OPTION??
 
-   /* exports.getRecipes = async (req, res) => {
-        try {
-          const recipes = await Recipe.find({ user: req.user.id });
-          res.render('my-recipes.ejs', { recipes: recipes, user: req.user })
-        } catch (err) {
-          console.log(err)
+      exports.getRecipes = async (req, res) => {
+          try {
+            const recipes = await Recipe.find({ user: req.params.userId })
+            .populate('user')
+            .lean()
+            res.render('my-recipes.ejs', { recipes })
+        } catch(err) {
+            console.error(err)
         }
-      } */
+      } 
 
        exports.getUserRecipes = async (req, res) => {
           try {
@@ -183,11 +169,13 @@ exports.submitRecipeOnPost = async(req, res) => {
       } 
 
     exports.getFavorites = async (req, res) => {
-        try {
-          const recipes = await Recipe.find({ user: req.user.id });
-          res.render('favorites.ejs', { recipes: recipes, user: req.user });
-        } catch (err) {
-          console.log(err)
+          try {
+            const recipes = await Recipe.find({ user: req.params.userId })
+            .populate('user')
+            .lean()
+            res.render('favorites.ejs', { recipes })
+        } catch(err) {
+            console.error(err)
         }
       }
 
@@ -230,14 +218,14 @@ exports.submitRecipeOnPost = async(req, res) => {
 
     exports.favoriteRecipe = async (req, res) => {
           let favorited = false
-          try{
+          try {
             let recipe = await Recipe.findById({_id:req.params.id})
             favorited  = (recipe.favorites.includes(req.user.id))
           } catch(err){
           }
           //if already favorited, remove user from likes array
           if(favorited){
-            try{
+            try {
               await Recipe.findOneAndUpdate({_id:req.params.id},
                 {
                   $pull : {'favorites' : req.user.id}
@@ -245,13 +233,13 @@ exports.submitRecipeOnPost = async(req, res) => {
                 
                 console.log('Removed user from favorites array')
                 res.redirect('back')
-              }catch(err){
+              } catch(err){
                 console.log(err)
               }
             }
             //else add user to favorites array
-            else{
-              try{
+            else {
+              try {
                 await Recipe.findOneAndUpdate({_id:req.params.id},
                   {
                     $addToSet : {'favorites' : req.user.id}
@@ -259,7 +247,7 @@ exports.submitRecipeOnPost = async(req, res) => {
                   
                   console.log('Added user to favorites array')
                   res.redirect(`back`)
-              }catch(err){
+              } catch(err){
                   console.log(err)
               }
             }
@@ -268,6 +256,7 @@ exports.submitRecipeOnPost = async(req, res) => {
         try {
           // Find post by id
           let recipes = await Recipe.findById({ _id: req.params.id })
+          await cloudinary.uploader.destroy(post.cloudinaryId)
           // Delete post from db
           await Recipe.remove({ _id: req.params.id });
           console.log('Deleted Recipe');

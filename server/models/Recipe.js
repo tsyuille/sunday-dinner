@@ -17,9 +17,17 @@ const recipeSchema = new mongoose.Schema({
         type: Array,
         required: true
     }, 
+    cloudinaryId: {
+        type: String,
+        require: true,
+      },
     category: {
         type: String,
         enum: ['Cookout', 'Baby Shower', 'Quick & Easy', 'Shindig', 'Sundee Dinner'],
+        required: true
+    },
+    favorites: {
+        type: Array, 
         required: true
     },
     user: {

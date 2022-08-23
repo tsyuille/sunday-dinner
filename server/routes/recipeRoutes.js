@@ -6,7 +6,7 @@ const { ensureAuth, ensureGuest } = require('../../middleware/auth')
 // App Routes
 router.get('/', ensureGuest, recipeController.index)
 router.get('/home', ensureAuth, recipeController.home)
-// router.get('/my-recipes', ensureAuth, recipeController.getRecipes)
+router.get('/my-recipes', ensureAuth, recipeController.getRecipes)
 router.get('/recipes/user/:userId', ensureAuth, recipeController.getUserRecipes)
 router.get('/favorites', ensureAuth, recipeController.getFavorites)
 router.get('/recipe/:id', recipeController.exploreRecipe)
