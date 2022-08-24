@@ -4,7 +4,7 @@
 
     <section class="row">
         <section class="col-12 col-md-4">
-            <img src="/uploads/<%- recipe.image %>" class="img-fluid sticky-top" style="top: 20px" 
+            <img src="<%- recipe.image %>" class="img-fluid sticky-top" style="top: 20px" 
             alt="<%- recipe.name %>" loading="lazy">
         </section>
         <section class="col-12 col-md-8">
@@ -20,7 +20,7 @@
                     action="/favoriteRecipe/<%= recipe.id %>?_method=PUT"
                     method="POST"
                 >
-                    <button class="<%if(recipe.favorites.includes(user.id)){ %> bi bi-bookmark-fill<%} else { %> bi bi-bookmark <% }%> btn btn-primary" type="submit"></button>
+                    <button class="<%if(recipe.favorites.includes(user.id)){ %> bi bi-bookmark-check-fill <%} else { %> bi bi-bookmark-plus <% }%> btn btn-warning" type="submit"></button>
                 </form>
             </section>
             <section class="row pt-4">

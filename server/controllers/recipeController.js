@@ -1,8 +1,8 @@
 require('../models/database')
-const cloudinary = require('../middleware/cloudinary')
+const cloudinary = require('../../middleware/cloudinary')
 const Category = require('../models/Category')
 const Recipe = require('../models/Recipe')
-const user = require('../models/User')
+const User = require('../models/User')
 
 
 // GET /
@@ -148,7 +148,7 @@ exports.submitRecipeOnPost = async(req, res) => {
 
       exports.getRecipes = async (req, res) => {
           try {
-            const recipes = await Recipe.find({ user: req.params.userId })
+            const recipes = await Recipe.find({ user: req.user.id })
             .populate('user')
             .lean()
             res.render('my-recipes.ejs', { recipes })
@@ -170,7 +170,7 @@ exports.submitRecipeOnPost = async(req, res) => {
 
     exports.getFavorites = async (req, res) => {
           try {
-            const recipes = await Recipe.find({ user: req.params.userId })
+            const recipes = await Recipe.find({ user: req.user.id })
             .populate('user')
             .lean()
             res.render('favorites.ejs', { recipes })
@@ -178,43 +178,6 @@ exports.submitRecipeOnPost = async(req, res) => {
             console.error(err)
         }
       }
-
-    exports.likePost = async (req, res)=>{
-        let liked = false
-        try{
-          let recipe  = await Recipe.findById({_id:req.params.id})
-          liked = (recipe.likes.includes(req.user.id))
-        } catch(err){
-        }
-        //if already liked, remove user from likes array
-        if(liked){
-          try{
-            await Recipe.findOneAndUpdate({_id:req.params.id},
-              {
-                $pull : {'likes' : req.user.id}
-              })
-              
-              console.log('Removed user from likes array')
-              res.redirect('back')
-            }catch(err){
-              console.log(err)
-            }
-          }
-          //else add user to like array
-          else{
-            try{
-              await Recipe.findOneAndUpdate({_id:req.params.id},
-                {
-                  $addToSet : {'likes' : req.user.id}
-                })
-                
-                console.log('Added user to likes array')
-                res.redirect(`back`)
-            }catch(err){
-                console.log(err)
-            }
-          }
-        }
 
     exports.favoriteRecipe = async (req, res) => {
           let favorited = false
@@ -252,16 +215,17 @@ exports.submitRecipeOnPost = async(req, res) => {
               }
             }
           }
-    exports.deletePost = async (req, res) => {
+
+    exports.deleteRecipe = async (req, res) => {
         try {
           // Find post by id
-          let recipes = await Recipe.findById({ _id: req.params.id })
-          await cloudinary.uploader.destroy(post.cloudinaryId)
+          let recipe = await Recipe.findById({ _id: req.params.id })
+          await cloudinary.uploader.destroy(recipe.cloudinaryId)
           // Delete post from db
           await Recipe.remove({ _id: req.params.id });
           console.log('Deleted Recipe');
           res.redirect('/submit-recipe');
         } catch (err) {
-          res.redirect('/submit-recipe');
+          res.redirect('/my-recipes');
         }
       }

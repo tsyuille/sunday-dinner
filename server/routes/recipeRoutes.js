@@ -16,8 +16,7 @@ router.get('/latest', recipeController.exploreLatest)
 router.get('/submit-recipe', recipeController.submitRecipe)
 router.post('/submit-recipe', recipeController.submitRecipeOnPost)
 router.post('/search', recipeController.searchRecipe)
-// router.put('/likePost/:id', recipeController.likePost)
 router.put('/favoriteRecipe/:id', recipeController.favoriteRecipe)
-router.delete('/deletePost/:id', recipeController.deletePost)
+router.delete('/deletePost/:id', recipeController.deleteRecipe)
 
 module.exports = router
