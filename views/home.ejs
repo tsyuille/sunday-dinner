@@ -10,11 +10,11 @@
                 <img src="/uploads/<%= recipe.image %>" class="card-img-top" alt="<%= recipe.name %>">
                 <section class="card-body">
                 <h5 class="card-title"><%= recipe.name %></h5>
-                <!--<p class="card-text"><small class="text-muted">By: <%= recipe.user%></small></p>-->
                 <a href="/recipe/<%= recipe._id %>" class="btn btn-outline-dark">View Recipe</a>
                 </section>
                 <section class="card-footer">
-                <span class="badge rounded-pill text-light bg-dark"><%= recipe.category%></span>
+                <span class="badge rounded-pill text-light bg-dark"><a href="/categories" style="text-decoration:none; color:white"><%= recipe.category%></a></span>
+                <span class="badge rounded-pill btn btn-warning"><a href="/recipes/user/<%- recipe.user._id %>" style="text-decoration: none; color:black"><%- user.displayName %></a></span>
                 </section>
             </section>
             </section>
@@ -27,7 +27,7 @@
 <section class="px-4 py-5 my-5 text-center">
     <img src="/img/1.png" class="d-block mx-auto mb-4 img-fluid" alt="" width="566" height="208" Loading="lazy">
     <section class="col-lg-6 mx-auto d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <a href="/submit-recipe" class="btn btn-primary btn-dark btn-lg">Submit Recipe</a>
+        <a href="/submit-recipe" class="btn btn-warning btn-lg">Submit Recipe</a>
     </section>
 </section>
 
