@@ -17,6 +17,6 @@ router.get('/submit-recipe', recipeController.submitRecipe)
 router.post('/submit-recipe', recipeController.submitRecipeOnPost)
 router.post('/search', recipeController.searchRecipe)
 router.put('/favoriteRecipe/:id', recipeController.favoriteRecipe)
-router.delete('/deletePost/:id', recipeController.deleteRecipe)
+router.delete('/deleteRecipe/:id', recipeController.deleteRecipe)
 
 module.exports = router

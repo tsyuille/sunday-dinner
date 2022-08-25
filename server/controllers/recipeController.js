@@ -218,14 +218,14 @@ exports.submitRecipeOnPost = async(req, res) => {
 
     exports.deleteRecipe = async (req, res) => {
         try {
-          // Find post by id
+          // Get recipe by id
           let recipe = await Recipe.findById({ _id: req.params.id })
           await cloudinary.uploader.destroy(recipe.cloudinaryId)
-          // Delete post from db
-          await Recipe.remove({ _id: req.params.id });
-          console.log('Deleted Recipe');
-          res.redirect('/submit-recipe');
+          // Delete recipe from database
+          await Recipe.remove({ _id: req.params.id })
+          console.log('Deleted Recipe')
+          res.redirect('/submit-recipe')
         } catch (err) {
-          res.redirect('/my-recipes');
+          res.redirect('/my-recipes')
         }
       }
