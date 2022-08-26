@@ -23,7 +23,7 @@ const recipeSchema = new mongoose.Schema({
       },
     category: {
         type: String,
-        enum: ['Cookout', 'Baby Shower', 'Quick & Easy', 'Shindig', 'Sundee Dinner'],
+        enum: ['Cookout', 'Baby Shower', 'Quick & Easy', 'Shindig', 'Sunday Dinner'],
         required: true
     },
     favorites: {

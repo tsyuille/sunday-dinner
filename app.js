@@ -5,7 +5,6 @@ const dotenv = require('dotenv')
 const passport = require('passport')
 const bodyParser = require('body-parser')
 const expressLayouts = require('express-ejs-layouts')
-const fileUpload = require('express-fileupload')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const methodOverride = require('method-override')
@@ -38,7 +37,6 @@ app.use(session({
 )
 
 app.use(flash())
-app.use(fileUpload())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 

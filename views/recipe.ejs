@@ -13,7 +13,7 @@
                 <section class="col-12 mb-4">
                     <i class="bi bi-tag"></i>
                     <%- recipe.category %>
-                    <p>Recipe By: <a href="/recipes/user/<%- recipe.user._id %>"><%- user.displayName %></a></p>
+                    <!-- <p>Recipe By: <a href="/recipes/user/<%- recipe.user._id %>"><%- user.displayName %></a></p> -->
                 </section>
                 <form
                     class="col justify-content-end"
@@ -45,7 +45,7 @@
     </section>
 
 <% } else { %>
-    <p>No item found.</p>
+    <p>No recipes found.</p>
 <% } %>    
 
 <%- include('partials/footer') -%>

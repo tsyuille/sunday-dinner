@@ -151,7 +151,7 @@ exports.submitRecipeOnPost = async(req, res) => {
             const recipes = await Recipe.find({ user: req.user.id })
             .populate('user')
             .lean()
-            res.render('my-recipes.ejs', { recipes })
+            res.render('my-recipes.ejs', { recipes: recipes, user:req.user })
         } catch(err) {
             console.error(err)
         }

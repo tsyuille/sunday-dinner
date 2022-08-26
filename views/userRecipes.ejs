@@ -14,7 +14,7 @@
           <a href="/recipe/<%= recipes[i]._id%>" class="btn btn-warning">View Recipe</a>
           <%if(recipes.user == user._id){ %>
           <form
-            action="/recipe/deletePost/<%= recipe.id %>?_method=DELETE"
+            action="/recipe/deleteRecipe/<%= recipe.id %>?_method=DELETE"
             method="POST"
             class="col-3">
             <button class="btn btn-primary fa fa-trash" type="submit"></button>
