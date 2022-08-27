@@ -2,7 +2,6 @@ require('../models/database')
 const cloudinary = require('../../middleware/cloudinary')
 const Category = require('../models/Category')
 const Recipe = require('../models/Recipe')
-const User = require('../models/User')
 
 
 // GET /
@@ -21,7 +20,7 @@ exports.index = async(req, res) => {
 exports.home = async(req, res) => {
     try{
         const limitNumber = 10
-        const categories = await Category.find({}).limit(limitNumber)
+        // const categories = await Category.find({}).limit(limitNumber)
         const category = await Category.find({}).sort({ _id: -1 }).limit(limitNumber)
         const recipe = await Recipe.find({}).sort({ _id: -1 }).limit(limitNumber)
         const latest = await Recipe.find({}).sort({_id: -1}).limit(limitNumber)
@@ -29,11 +28,11 @@ exports.home = async(req, res) => {
         const babyShower = await Recipe.find({'category': 'Baby Shower'}).limit(limitNumber)
         const quickEasy = await Recipe.find({'category': 'Quick & Easy'}).limit(limitNumber)
         const shindig = await Recipe.find({'category': 'Shindig'}).limit(limitNumber)
-        const sundee = await Recipe.find({'category': 'Sundee Dinner'}).limit(limitNumber)
+        const sunday = await Recipe.find({'category': 'Sunday Dinner'}).limit(limitNumber)
 
-        const food = { latest, cookout, babyShower, quickEasy, shindig, sundee }
+        const food = { latest, cookout, babyShower, quickEasy, shindig, sunday }
 
-        res.render('home', { title: 'Sundee Dinner', categories, category, recipe, food })
+        res.render('home', { title: 'Sunday Dinner', /*categories,*/ category, recipe, food })
     } catch(error) {
         res.status(500).send({message: error.message || "Error Occurred"})
     }
@@ -49,23 +48,10 @@ exports.exploreCategories = async(req, res) => {
         const babyShower = await Recipe.find({'category': 'Baby Shower'}).limit(limitNumber)
         const quickEasy = await Recipe.find({'category': 'Quick & Easy'}).limit(limitNumber)
         const shindig = await Recipe.find({'category': 'Shindig'}).limit(limitNumber)
-        const sundee = await Recipe.find({'category': 'Sundee Dinner'}).limit(limitNumber)
-        const food = { cookout, babyShower, quickEasy, shindig, sundee }
+        const sunday = await Recipe.find({'category': 'Sunday Dinner'}).limit(limitNumber)
+        const food = { cookout, babyShower, quickEasy, shindig, sunday }
 
-        res.render('categories', { title: 'Sundee Dinner - Categories', categories, food })
-    } catch(error) {
-        res.status(500).send({message: error.message || "Error Occurred"})
-    }  
-}
-
-//GET /categories/:id
-
-exports.exploreCategoriesById = async(req, res) => {
-    try{
-        let categoryId = req.params.id
-        const limitNumber = 20
-        const categoryById = await Recipe.find({ 'category': categoryId }).limit(limitNumber)
-        res.render('categories', { title: 'Sundee Dinner - Categories', categoryId })
+        res.render('categories', { title: 'Sunday Dinner - Categories', categories, food })
     } catch(error) {
         res.status(500).send({message: error.message || "Error Occurred"})
     }  
@@ -77,7 +63,7 @@ exports.exploreRecipe = async(req, res) => {
     try{
         let recipeId = req.params.id
         const recipe = await Recipe.findById(recipeId)
-        res.render('recipe', { title: 'Sundee Dinner - Recipe', recipe })
+        res.render('recipe', { title: 'Sunday Dinner - Recipe', recipe })
     } catch(error) {
         res.status(500).send({message: error.message || "Error Occurred"})
     }  
@@ -89,7 +75,7 @@ exports.exploreLatest = async(req, res) => {
     try {
       const limitNumber = 5
       const recipe = await Recipe.find({}).sort({ _id: -1 }).limit(limitNumber)
-      res.render('latest', { title: 'Sundee Dinner - Explore Latest', recipe } )
+      res.render('latest', { title: 'Sunday Dinner - Explore Latest', recipe } )
     } catch (error) {
       res.satus(500).send({message: error.message || "Error Occured" })
     }
@@ -100,7 +86,7 @@ exports.exploreLatest = async(req, res) => {
 exports.submitRecipe = async(req, res) => {
     const infoErrorsObj = req.flash('infoErrors')
     const infoSubmitObj = req.flash('infoSubmit')
-    res.render('submit-recipe', { title: 'Sundee Dinner - Submit Recipe', infoErrorsObj, infoSubmitObj  } )
+    res.render('submit-recipe', { title: 'Sunday Dinner - Submit Recipe', infoErrorsObj, infoSubmitObj  } )
 }
 
 // POST /submit-recipe
@@ -124,8 +110,6 @@ exports.submitRecipeOnPost = async(req, res) => {
       req.flash('infoSubmit', 'Recipe has been added.')
       res.redirect('/home')
     } catch (err) {
-      //res.json(error)
-      //req.flash('infoErrors', error)
       console.log(err)
       res.redirect('/submit-recipe')
     }
@@ -137,14 +121,14 @@ exports.submitRecipeOnPost = async(req, res) => {
     try {
       let searchTerm = req.body.searchTerm
       let recipe = await Recipe.find( { $text: { $search: searchTerm, $diacriticSensitive: true } })
-      res.render('search', { title: 'Sundee Dinner - Search', recipe } )
+      res.render('search', { title: 'Sunday Dinner - Search', recipe } )
     } catch (error) {
       res.status(500).send({message: error.message || "Error Occured" })
     }
   }
 
 
-// GET user recipes, favorites, likes, delete option ADD UPDATE RECIPE OPTION??
+// GET user recipes, favorites, delete  ADD UPDATE RECIPE OPTION??
 
       exports.getRecipes = async (req, res) => {
           try {
@@ -186,7 +170,7 @@ exports.submitRecipeOnPost = async(req, res) => {
             favorited  = (recipe.favorites.includes(req.user.id))
           } catch(err){
           }
-          //if already favorited, remove user from likes array
+          //if already favorited, remove user from array
           if(favorited){
             try {
               await Recipe.findOneAndUpdate({_id:req.params.id},

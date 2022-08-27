@@ -14,7 +14,7 @@
                 </section>
                 <section class="card-footer">
                 <span class="badge rounded-pill text-light bg-dark"><a href="/categories" style="text-decoration:none; color:white"><%= recipe.category%></a></span>
-                <!-- <span class="badge rounded-pill btn btn-warning"><a href="/recipes/user/<%- recipe.user._id %>" style="text-decoration: none; color:black"><%- user.displayName %></a></span> -->
+                <span class="badge rounded-pill btn btn-warning"><a href="/recipes/user/<%- recipe.user._id %>" style="text-decoration: none; color:black"><%- user.displayName %></a></span> 
                 </section>
             </section>
             </section>
@@ -32,23 +32,3 @@
 </section>
 
 <%- include('partials/footer') -%>
-
-<!--<section class="row flex-lg-row-reverse align-items-center g-5 py-4 mb-4">
-
- Categories - SHOW ONLY
-<section class="pb-4 pt-4">
-    <section class="d-flex mb-2 align-items-center">
-        <h2>Categories</h2>
-    </section>
-    <section class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        <% if(categories != '') { %>
-            <% categories.forEach(function(category, index) { %>
-                    <div class="latest_img shadow">
-                        <img src="/img/<%- category.image %>" alt="<%- category.name %>" Loading="lazy">
-                    </div>
-                    <div class="pt-1"><%- category.name %></div>
-                </a>
-            <% }) %>
-        <% } %>
-    </section>
-</section>
