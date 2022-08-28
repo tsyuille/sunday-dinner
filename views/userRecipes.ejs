@@ -1,11 +1,10 @@
 <%- include('partials/main-header') -%>
 
 <section class="text-center">
-    <h1 class="pb-4"><%- user.displayName %>'s Recipes</h1>
+  <% for(let i = 0; i < recipes.length; i++) { %>
+  <!-- <h1 class="pb-4"><%- recipes[i].user %>'s Recipes</h1> -->
 </section>
-
 <section class="row row-cols-1 row-cols-md-3 g-4">
-    <% for(let i = 0; i < recipes.length; i++) { %>
     <section class="col">
       <section class="card h-100">
         <img src="<%= recipes[i].image%>" class="card-img-top" alt="<%= recipes[i].name%>">
