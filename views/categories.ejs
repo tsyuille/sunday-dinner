@@ -13,7 +13,8 @@
             <% food.cookout.forEach(function(recipe, index) { %>
                 <a href="/recipe/<%- recipe._id %>" class="col text-center latest_link">
                     <div class="latest_img shadow">
-                        <img src="/img/<%- recipe.image %>" alt="<%- recipe.name %>" Loading="lazy">
+                        <img src="<%- recipe.image %>" class="img-fluid sticky-top" style="top: 20px" 
+                         alt="<%- recipe.name %>" loading="lazy">
                     </div>
                     <div class="pt-1"><%- recipe.name %></div>
                 </a>
@@ -33,7 +34,8 @@
             <% food.babyShower.forEach(function(recipe, index) { %>
                 <a href="/recipe/<%- recipe._id %>" class="col text-center latest_link">
                     <div class="latest_img shadow">
-                        <img src="/img/<%- recipe.image %>" alt="<%- recipe.name %>" Loading="lazy">
+                        <img src="<%- recipe.image %>" class="img-fluid sticky-top" style="top: 20px" 
+                         alt="<%- recipe.name %>" loading="lazy">
                     </div>
                     <div class="pt-1"><%- recipe.name %></div>
                 </a>
@@ -53,7 +55,8 @@
             <% food.quickEasy.forEach(function(recipe, index) { %>
                 <a href="/recipe/<%- recipe._id %>" class="col text-center latest_link">
                     <div class="latest_img shadow">
-                        <img src="/img/<%- recipe.image %>" alt="<%- recipe.name %>" Loading="lazy">
+                        <img src="<%- recipe.image %>" class="img-fluid sticky-top" style="top: 20px" 
+                         alt="<%- recipe.name %>" loading="lazy">
                     </div>
                     <div class="pt-1"><%- recipe.name %></div>
                 </a>
@@ -73,7 +76,8 @@
             <% food.shindig.forEach(function(recipe, index) { %>
                 <a href="/recipe/<%- recipe._id %>" class="col text-center latest_link">
                     <div class="latest_img shadow">
-                        <img src="/img/<%- recipe.image %>" alt="<%- recipe.name %>" Loading="lazy">
+                        <img src="<%- recipe.image %>" class="img-fluid sticky-top" style="top: 20px" 
+                         alt="<%- recipe.name %>" loading="lazy">
                     </div>
                     <div class="pt-1"><%- recipe.name %></div>
                 </a>
@@ -86,14 +90,15 @@
 
 <section class="pb-4 pt-4">
     <section class="d-flex mb-2 align-items-center">
-        <h2>Sundee Dinner</h2>
+        <h2>Sunday Dinner</h2>
     </section>
     <section class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        <% if(typeof food.sundee !== 'undefined' && food.sundee.length > 0) { %>
-            <% food.sundee.forEach(function(recipe, index) { %>
+        <% if(typeof food.sunday !== 'undefined' && food.sunday.length > 0) { %>
+            <% food.sunday.forEach(function(recipe, index) { %>
                 <a href="/recipe/<%- recipe._id %>" class="col text-center latest_link">
                     <div class="latest_img shadow">
-                        <img src="/img/<%- recipe.image %>" alt="<%- recipe.name %>" Loading="lazy">
+                        <img src="<%- recipe.image %>" class="img-fluid sticky-top" style="top: 20px" 
+                         alt="<%- recipe.name %>" loading="lazy">
                     </div>
                     <div class="pt-1"><%- recipe.name %></div>
                 </a>

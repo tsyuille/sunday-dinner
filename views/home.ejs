@@ -7,7 +7,8 @@
             <% recipe.forEach(function(recipe, index){ %>
             <section class="col">
             <section class="card h-100">
-                <img src="/uploads/<%= recipe.image %>" class="card-img-top" alt="<%= recipe.name %>">
+                <img src="<%- recipe.image %>" class="img-fluid" style="top: 20px" 
+                        alt="<%- recipe.name %>" loading="lazy">
                 <section class="card-body">
                 <h5 class="card-title"><%= recipe.name %></h5>
                 <a href="/recipe/<%= recipe._id %>" class="btn btn-outline-warning text-dark">View Recipe</a>
@@ -25,10 +26,10 @@
   </section>
 </section>
 <section class="px-4 py-5 my-5 text-center">
-    <img src="/img/1.png" class="d-block mx-auto mb-4 img-fluid" alt="" width="566" height="208" Loading="lazy">
     <section class="col-lg-6 mx-auto d-grid gap-2 d-sm-flex justify-content-sm-center">
         <a href="/submit-recipe" class="btn btn-warning btn-lg">Submit Recipe</a>
     </section>
+    <img src="/img/mom+dad_v2.png" class="d-block mx-auto mb-4 img-fluid" alt="" width="566" height="208" Loading="lazy">
 </section>
 
 <%- include('partials/footer') -%>
