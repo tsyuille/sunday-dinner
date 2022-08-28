@@ -11,14 +11,6 @@
         <section class="card-body">
           <h5 class="card-title"><%= recipes[i].name%></h5>
           <a href="/recipe/<%= recipes[i]._id%>" class="btn btn-warning">View Recipe</a>
-          <%if(recipes.user == user._id){ %>
-          <form
-            action="/recipe/deleteRecipe/<%= recipe.id %>?_method=DELETE"
-            method="POST"
-            class="col-3">
-            <button class="btn btn-primary fa fa-trash" type="submit"></button>
-          </form>
-          <%}%>
         </section>
         <section class="card-footer">
           <span class="badge rounded-pill bg-black"><a href="/categories" style="text-decoration:none; color:white"><%= recipes[i].category%></a></span>
