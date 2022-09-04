@@ -13,8 +13,7 @@
             <section class="card-body">
               <h5 class="card-title"><%= recipes[i].name%></h5>
               <a href="/recipe/<%= recipes[i]._id%>" class="btn btn-warning">View Recipe</a>
-              <!-- <a href="recipe/<%= recipes[i]._id%>" class="btn btn-primary">Edit</a> -->
-              <!--Is if statement needed? Test under different user and see if I can only see this user's recipes. If so, remove if statement for delete button
+              <!-- <a href="recipe/<%= recipes[i]._id%>" class="btn btn-outline-warning text-dark">Edit</a>
               
               <form
                 action="/recipe/deleteRecipe/<%= recipes[i]._id %>?_method=DELETE"
