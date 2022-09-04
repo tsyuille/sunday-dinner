@@ -154,7 +154,7 @@ exports.submitRecipeOnPost = async(req, res) => {
 
     exports.getFavorites = async (req, res) => {
           try {
-            const recipes = await Recipe.find({ user: req.user.id })
+            const recipes = await Recipe.find({})
             .populate('user')
             .lean()
             res.render('favorites.ejs', { recipes })
