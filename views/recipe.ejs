@@ -14,14 +14,14 @@
                     <i class="bi bi-tag"></i>
                     <%- recipe.category %>
                    <!--<p>Recipe By: <a href="/recipes/user/<%- recipe.user._id %>"><%- user.displayName %></a></p>
-                </section>
+                </section>-->
                 <form
                     class="col justify-content-end"
                     action="/favoriteRecipe/<%= recipe.id %>?_method=PUT"
                     method="POST"
                 >
                     <button class="<%if(recipe.favorites.includes(user.id)){ %> bi bi-bookmark-check-fill <%} else { %> bi bi-bookmark-plus <% }%> btn btn-warning" type="submit"></button>
-                </form>-->
+                </form>
             </section>
             <section class="row pt-4">
                 <section class="col-12">
