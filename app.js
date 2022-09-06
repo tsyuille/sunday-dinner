@@ -10,7 +10,7 @@ const MongoStore = require('connect-mongo')
 const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
-const PORT = 9000
+const PORT = process.env.PORT || 9000
 
 // Load config
 dotenv.config({ path: './config/config.env' })
@@ -57,4 +57,4 @@ app.set('view engine', 'ejs')
 const routes = require('./server/routes/recipeRoutes')
 app.use('/', routes)
 app.use('/auth', require('./server/routes/auth'))
-app.listen(process.env.PORT || PORT, () => console.log(`Listening to port ${PORT}`))
+app.listen(PORT, () => console.log(`Listening to port ${PORT}`))
