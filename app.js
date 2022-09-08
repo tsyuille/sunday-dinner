@@ -56,5 +56,4 @@ app.set('view engine', 'ejs')
 
 const routes = require('./server/routes/recipeRoutes')
 app.use('/', routes)
-app.use('/auth', require('./server/routes/auth'))
 app.listen(PORT, () => console.log(`Listening to port ${PORT}`))
