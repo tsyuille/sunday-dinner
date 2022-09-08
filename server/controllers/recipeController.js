@@ -69,18 +69,6 @@ exports.exploreRecipe = async(req, res) => {
     }  
 }
 
-// GET /latest
-
-exports.exploreLatest = async(req, res) => {
-    try {
-      const limitNumber = 5
-      const recipe = await Recipe.find({}).sort({ _id: -1 }).limit(limitNumber)
-      res.render('latest', { title: 'Sunday Dinner - Explore Latest', recipe } )
-    } catch (error) {
-      res.satus(500).send({message: error.message || "Error Occured" })
-    }
-} 
-
 // GET /submit
 
 exports.submitRecipe = async(req, res) => {
