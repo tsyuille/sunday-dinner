@@ -9,7 +9,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser')
-const flash = require('connect-flash')
+const flash = require('express-flash')
 const PORT = process.env.PORT || 9000
 
 // Load config
