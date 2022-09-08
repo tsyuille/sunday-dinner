@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const authController = require('../controllers/auth')
 const upload = require('../../middleware/multer')
 const recipeController = require('../controllers/recipeController')
 const { ensureAuth, ensureGuest } = require('../../middleware/auth')
@@ -18,5 +19,11 @@ router.post('/submit-recipe', upload.single('file'), recipeController.submitReci
 router.post('/search', recipeController.searchRecipe)
 router.put('/favoriteRecipe/:id', recipeController.favoriteRecipe)
 router.delete('/deleteRecipe/:id', recipeController.deleteRecipe)
+
+router.get('/login', authController.getLogin)
+router.post('/login', authController.postLogin)
+router.get('/logout', authController.logout)
+router.get('/signup', authController.getSignup)
+router.post('/signup', authController.postSignup)
 
 module.exports = router
