@@ -2,7 +2,7 @@
 
 A place where users can store and share family recipes. 
 
-**Link to project:** https://sunday-dinner.herokuapp.com/
+<!--**Link to project:** https://sunday-dinner.herokuapp.com/-->
 
 <img width="1440" alt="Sunday Dinner login screen" src="https://user-images.githubusercontent.com/24927444/189786113-c1e1cce7-2ae4-4a15-83c9-54ab7dfc15ef.png">
 
